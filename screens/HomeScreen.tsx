@@ -5,6 +5,7 @@ import { RootTabScreenProps } from '../types';
 import styles from '../styles'
 import { ReactChild, ReactFragment, ReactPortal } from 'react';
 import CountdownTimer from '../components/CountdownTimer';
+import '../App.css';
 
 const ItemList = (props: { name: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; }) => {
   return (
@@ -15,7 +16,7 @@ const ItemList = (props: { name: boolean | ReactChild | ReactFragment | ReactPor
 }
 
 export default function HomeScreen({ navigation }: RootTabScreenProps<'Home'>) {
-  const THREE_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000;
+  const THREE_DAYS_IN_MS = 24 * 60 * 60 * 1000;
   const NOW_IN_MS = new Date().getTime();
 
   const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
@@ -35,10 +36,12 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<'Home'>) {
               Click here to complete your RAM Survey
             </Text>    
           </View>
-          <View>
+          <View style={{width: '20%', backgroundColor:'transparent'}}>
           <Text style={{alignSelf:'flex-start', padding: 10}}>
             RAM Status will reset in
-            <CountdownTimer targetDate={dateTimeAfterThreeDays} />
+            <View style={styles.countdownTimer}>
+              <CountdownTimer  targetDate={dateTimeAfterThreeDays} />
+            </View>
           </Text>
           </View>
             
