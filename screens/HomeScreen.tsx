@@ -4,7 +4,7 @@ import { ImageBackground, ScrollView } from 'react-native';
 import { RootTabScreenProps } from '../types';
 import styles from '../styles'
 import { ReactChild, ReactFragment, ReactPortal } from 'react';
-
+import CountdownTimer from '../components/CountdownTimer';
 
 const ItemList = (props: { name: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; }) => {
   return (
@@ -15,6 +15,12 @@ const ItemList = (props: { name: boolean | ReactChild | ReactFragment | ReactPor
 }
 
 export default function HomeScreen({ navigation }: RootTabScreenProps<'Home'>) {
+  const THREE_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000;
+  const NOW_IN_MS = new Date().getTime();
+
+  const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
+
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -26,12 +32,16 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<'Home'>) {
           <View style={styles.messageBox}>
             <Text style={styles.messageText}>Risk Assessment Incomplete </Text>
             <Text style={{fontSize: 20, fontStyle: 'italic'}} onPress={() => navigation.navigate('RAMSurvey')} >
-              Please complete your RAM Survey in the next tab
+              Click here to complete your RAM Survey
             </Text>    
           </View>
-      <Text style={{alignSelf:'flex-start', padding: 10}}>
-        RAM Status will reset in 00:00:00H
-      </Text>      
+          <View>
+          <Text style={{alignSelf:'flex-start', padding: 10}}>
+            RAM Status will reset in
+            <CountdownTimer targetDate={dateTimeAfterThreeDays} />
+          </Text>
+          </View>
+            
       </View>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <View style={styles.programmeBox}>
