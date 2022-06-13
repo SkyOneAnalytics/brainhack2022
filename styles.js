@@ -8,6 +8,15 @@ export default StyleSheet.create({
       justifyContent: 'center',
       width: '100%',
     },
+    countdownTimer: {
+      cursor: "pointer",
+      border: "transparent",
+      borderRadius: "0px",
+      padding: "0px 10px 0px 10px",
+      backgroundColor: "transparent",
+      width: '100%',
+      flexDirection: 'column',
+    },
     helloBar: {
       top: 0,
       backgroundColor: 'grey',

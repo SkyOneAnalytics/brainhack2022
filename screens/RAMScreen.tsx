@@ -7,7 +7,11 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-
+function getRisk() {
+  var value = 'High risk'
+  console.log("Hgh risk")
+  return value
+}
 export default function RAMScreen() {
   return (
     <View style={styles.container}>
@@ -27,7 +31,7 @@ export default function RAMScreen() {
       <FormControlLabel control={<Checkbox />} label="My buddy has completed his RAC" />
     </FormGroup>
     <Stack spacing={2} direction="row">
-      <Button variant="contained" color="success">Submit</Button>
+      <Button variant="contained" color="success" onClick={getRisk}>Submit</Button>
     </Stack>
     </View>
   );
