@@ -5,7 +5,6 @@ import { RootTabScreenProps } from '../types';
 import styles from '../styles'
 import { ReactChild, ReactFragment, ReactPortal } from 'react';
 import CountdownTimer from '../components/CountdownTimer';
-import '../App.css';
 
 const ItemList = (props: { name: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; }) => {
   return (
@@ -48,7 +47,7 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<'Home'>) {
       </View>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <View style={styles.programmeBox}>
-        <Text style={styles.title2} onPress={() => navigation.navigate('Training')}>Training Programme for 13 June 2022</Text>
+        <Text style={styles.title2} onPress={() => navigation.navigate('Training')}>Training Programme for 15 June 2022</Text>
         <View style={styles.listItem}>
           <ItemList name='5BX' />
           <ItemList name='Army Recruitment Talk' />
