@@ -5,6 +5,7 @@ import { RootTabScreenProps } from '../types';
 import styles from '../styles'
 import { ReactChild, ReactFragment, ReactPortal } from 'react';
 import CountdownTimer from '../components/CountdownTimer';
+import { useState } from 'react';
 
 const ItemList = (props: { name: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; }) => {
   return (
@@ -20,6 +21,11 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<'Home'>) {
 
   const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
 
+  const [isComplete, setIsComplete] = useState(false);
+
+  const handleChange = () => {
+    setIsComplete(true)
+  }
 
   return (
     <ScrollView>
@@ -27,24 +33,50 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<'Home'>) {
       <View style={styles.helloBar}>
           <Text style={{left: '10%'}}>Hello REC DOLPH XIA</Text>
       </View>
-      <View style={styles.statusBox}>
-          <Text style={styles.statusTitle}>Status: </Text>
-          <View style={styles.messageBox}>
-            <Text style={styles.messageText}>Risk Assessment Incomplete </Text>
-            <Text style={{fontSize: 20, fontStyle: 'italic'}} onPress={() => navigation.navigate('RAMSurvey')} >
-              Click here to complete your RAM Survey
-            </Text>    
-          </View>
-          <View style={{width: '20%', backgroundColor:'transparent'}}>
-          <Text style={{alignSelf:'flex-start', padding: 10}}>
-            RAM Status will reset in
-            <View style={styles.countdownTimer}>
-              <CountdownTimer  targetDate={dateTimeAfterThreeDays} />
+      
+      {isComplete == false &&
+        <View style={styles.statusBox1}>
+            <Text style={styles.statusTitle}>Status: </Text>
+            <View style={styles.messageBox}>
+              <Text style={styles.messageText}>Risk Assessment Incomplete </Text>
+              <Text style={{fontSize: 20, fontStyle: 'italic'}} onPress={() => {
+                navigation.navigate('RAMSurvey'); 
+                handleChange(); 
+                }} >
+                Click here to complete your RAM Survey
+              </Text>    
             </View>
-          </Text>
-          </View>
-            
-      </View>
+            <View style={{width: '20%', backgroundColor:'transparent'}}>
+            <Text style={{alignSelf:'flex-start', padding: 10}}>
+              RAM Status will reset in
+              <View style={styles.countdownTimer}>
+                <CountdownTimer  targetDate={dateTimeAfterThreeDays} />
+              </View>
+            </Text>
+            </View>  
+        </View>
+      }
+
+      {isComplete &&
+        <View style={styles.statusBox2}>
+            <Text style={styles.statusTitle}>Status: </Text>
+            <View style={styles.messageBox}>
+              <Text style={styles.messageText}>Risk Assessment Complete </Text>
+              <Text style={{fontSize: 20, fontStyle: 'italic'}} onPress={() => navigation.navigate('RAMSurvey')} >
+                Click here to complete your RAM Survey
+              </Text>    
+            </View>
+            <View style={{width: '20%', backgroundColor:'transparent'}}>
+            <Text style={{alignSelf:'flex-start', padding: 10}}>
+              RAM Status will reset in
+              <View style={styles.countdownTimer}>
+                <CountdownTimer  targetDate={dateTimeAfterThreeDays} />
+              </View>
+            </Text>
+            </View>  
+        </View>
+      }
+
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <View style={styles.programmeBox}>
         <Text style={styles.title2} onPress={() => navigation.navigate('Training')}>Training Programme for 15 June 2022</Text>
@@ -63,5 +95,3 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<'Home'>) {
     </ScrollView>
   );
 }
-
-

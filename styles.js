@@ -42,8 +42,16 @@ export default StyleSheet.create({
       alignSelf: 'flex-start',
       padding: 10,
     },
-    statusBox: {
+    statusBox1: {
       backgroundColor: '#FF8552',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: '80%', 
+      borderRadius: 10,
+      marginVertical: 10,
+    },
+    statusBox2: {
+      backgroundColor: '#7FFF00',
       alignItems: 'center',
       justifyContent: 'center',
       width: '80%', 
